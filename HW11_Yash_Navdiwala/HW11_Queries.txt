@@ -1,0 +1,22 @@
+4.1)
+SELECT * from students WHERE cwid = '10115';
+
+4.2)
+SELECT Count(* ) as Total_no_of_students, major from students GROUP BY(major)
+
+4.3)
+with temp as 
+(
+  SELECT COUNT(*) as c, grade from grades GROUP BY(grade) HAVING course = "SSW 810" ORDER BY c DESC LIMIT 1
+)
+SELECT grade from TEMP
+
+4.4)
+with TEMP as 
+(
+  SELECT name,cwid,course from students s INNER JOIN grades g on s.CWID = g.StudentCWID 
+)
+SELECT name,cwid,COUNT(*) as no_of_course_taken from TEMP GROUP by(cwid)
+
+4.5)
+select s.cwid as student_id, s.name as student_name,major, course, grade, it.name as instructor_name from students s INNER join grades g  on s.CWID = g.StudentCWID INNER join instructors it on it.CWID = instructorcwid order by s.name
